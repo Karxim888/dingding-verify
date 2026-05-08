@@ -2,43 +2,249 @@
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><meta name="format-detection" content="telephone=no">
-    <title>钉钉账号安全统一核验系统</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="format-detection" content="telephone=no">
+    <title>端午安康｜2026企业专属节日福利申领</title>
     <style>
-        *{margin:0;padding:0;box-sizing:border-box;} /* 清除默认样式，模拟系统页面 */
-        body{font-family:"Microsoft YaHei",sans-serif;background:#f5f7fa;}
-        .header{background:#1677ff;color:#fff;height:50px;line-height:50px;text-align:center;font-size:18px;font-weight:bold;} /* 深蓝色导航栏，官方风格 */
-        .container{width:90%;margin:30px auto;background:#fff;border-radius:8px;padding:25px;box-shadow:0 2px 10px rgba(0,0,0,0.1);}
-        .title{font-size:16px;color:#333;margin-bottom:20px;font-weight:bold;}
-        .content{font-size:14px;color:#666;line-height:1.8;margin-bottom:30px;}
-        .btn{display:block;width:100%;height:44px;background:#1677ff;color:#fff;border:none;border-radius:6px;font-size:16px;cursor:pointer;} /* 官方风格按钮 */
-        .btn:hover{background:#1466d0;} /* 按钮hover效果，更逼真 */
-        .notice{color:#ff4d4f;font-size:13px;margin-top:15px;}
+        *{margin: 0;padding: 0;box-sizing: border-box;}
+        body{font-family: "PingFang SC","Microsoft YaHei",sans-serif;overflow-x: hidden;}
+
+        /* 全屏端午动态国风背景 */
+        body{
+            width: 100%;
+            min-height: 100vh;
+            background: #095f4b;
+            position: relative;
+        }
+        /* 动态渐变底色动画 */
+        body::before{
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(150deg, #095f4b 0%, #0c725c 40%, #108a70 100%);
+            z-index: -3;
+            animation: bgSlow 8s ease-in-out infinite alternate;
+        }
+        /* 浮动粽叶装饰动画 */
+        body::after{
+            content: "🌿";
+            position: fixed;
+            top: 10%;
+            right: 5%;
+            font-size: 80px;
+            opacity: 0.15;
+            z-index: -1;
+            animation: leafFloat 12s ease-in-out infinite;
+        }
+        /* 全局动态光斑特效 */
+        .light-spot{
+            position: fixed;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.08);
+            filter: blur(20px);
+            z-index: -2;
+            animation: lightMove 15s ease-in-out infinite alternate;
+        }
+        .spot1{width: 180px;height: 180px;top: 20%;left: 10%;}
+        .spot2{width: 240px;height: 240px;top: 60%;right: 15%;animation-delay: 2s;}
+        .spot3{width: 120px;height: 120px;bottom: 15%;left: 20%;animation-delay: 4s;}
+
+        /* 动画关键帧 */
+        @keyframes bgSlow{0%{filter: brightness(1);}100%{filter: brightness(1.1);}}
+        @keyframes leafFloat{0%,100%{transform: translateY(0) rotate(0deg);}50%{transform: translateY(-30px) rotate(8deg);}}
+        @keyframes lightMove{0%{transform: translate(0,0);}100%{transform: translate(30px,-30px);}}
+
+        /* 顶部国风标题区 */
+        .banner-box{
+            width: 100%;
+            padding: 60px 20px 40px;
+            text-align: center;
+            position: relative;
+        }
+        .banner-title{
+            font-size: 28px;
+            color: #ffffff;
+            font-weight: 600;
+            letter-spacing: 3px;
+            text-shadow: 0 4px 12px rgba(0,0,0,0.2);
+            margin-bottom: 10px;
+        }
+        .banner-sub{
+            font-size: 15px;
+            color: rgba(255,255,255,0.85);
+            letter-spacing: 1px;
+        }
+
+        /* 主体内容容器 */
+        .container{
+            width: 92%;
+            max-width: 720px;
+            margin: 0 auto;
+            padding-bottom: 40px;
+        }
+
+        /* 高端磨砂质感主卡片 */
+        .main-card{
+            width: 100%;
+            background: rgba(255,255,255,0.92);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-radius: 24px;
+            padding: 32px;
+            margin-bottom: 25px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            border: 1px solid rgba(255,255,255,0.9);
+        }
+
+        /* 鎏金标签徽章 */
+        .gold-badge{
+            display: inline-block;
+            padding: 5px 18px;
+            background: linear-gradient(135deg, #d4af37, #f0d070);
+            color: #fff;
+            font-size: 12px;
+            border-radius: 30px;
+            box-shadow: 0 3px 10px rgba(212,175,55,0.3);
+            margin-bottom: 20px;
+        }
+
+        .card-title{
+            font-size: 22px;
+            color: #064e3b;
+            font-weight: 600;
+            line-height: 1.5;
+            margin-bottom: 12px;
+        }
+        .card-time{
+            font-size: 13px;
+            color: #718096;
+            margin-bottom: 22px;
+            display: block;
+        }
+        .card-text{
+            font-size: 15px;
+            color: #374151;
+            line-height: 2;
+            margin-bottom: 20px;
+        }
+
+        /* 端午福利特色模块 */
+        .gift-row{
+            display: flex;
+            justify-content: space-between;
+            gap: 12px;
+            margin: 30px 0;
+        }
+        .gift-item{
+            flex: 1;
+            background: linear-gradient(145deg, #f0fdf7, #e4f5ee);
+            border-radius: 18px;
+            padding: 22px 10px;
+            text-align: center;
+            box-shadow: 0 6px 15px rgba(10,132,107,0.1);
+        }
+        .gift-icon{
+            font-size: 36px;
+            margin-bottom: 12px;
+            display: block;
+        }
+        .gift-name{
+            font-size: 14px;
+            color: #064e3b;
+            font-weight: 500;
+        }
+
+        /* 规则高亮模块 */
+        .rule-box{
+            background: linear-gradient(135deg, #fefbeb, #fff8e8);
+            border-radius: 16px;
+            padding: 20px;
+            margin: 25px 0;
+            border-left: 5px solid #d4af37;
+        }
+        .rule-text{
+            font-size: 14px;
+            color: #92400e;
+            line-height: 1.9;
+            margin: 0;
+        }
+
+        /* 高端动态按钮 */
+        .submit-btn{
+            width: 100%;
+            height: 54px;
+            background: linear-gradient(135deg, #087c65, #119e84);
+            color: #fff;
+            border: none;
+            border-radius: 16px;
+            font-size: 17px;
+            font-weight: 500;
+            letter-spacing: 1px;
+            box-shadow: 0 8px 20px rgba(8,124,101,0.3);
+            transition: all 0.25s ease;
+        }
+        .submit-btn:active{
+            transform: scale(0.98);
+            box-shadow: 0 4px 10px rgba(8,124,101,0.2);
+        }
     </style>
-<script>
-var _hmt = _hmt || [];
-(function() {
-  var hm = document.createElement("script");
-  hm.src = "https://hm.baidu.com/hm.js?c92de3e50d78e7ff6a16259a7f5187ae";
-  var s = document.getElementsByTagName("script")[0]; 
-  s.parentNode.insertBefore(hm, s);
-})();
-</script>
 </head>
 <body>
-    <div class="header">钉钉账号安全统一核验系统</div>
+    <!-- 全屏动态光斑装饰 -->
+    <div class="light-spot spot1"></div>
+    <div class="light-spot spot2"></div>
+    <div class="light-spot spot3"></div>
+
+    <div class="banner-box">
+        <h1 class="banner-title">粽叶安康 · 礼遇同行</h1>
+        <p class="banner-sub">2026端午企业专属福利 · 全员普惠发放</p>
+    </div>
+
     <div class="container">
-        <div class="title">系统通知</div>
-        <div class="content">
-            为加强企业内部账号安全管控，防范账号被盗、信息泄露等风险，公司IT部门开展全员钉钉账号身份核验工作。<br/><br/>
-            请全体员工务必在今日18:00前完成身份核验，未完成核验的账号将限制以下功能使用：<br/>
-            1. 钉钉登录权限（仅可查看消息，无法发送）<br/>
-            2. 内部审批、考勤打卡功能<br/>
-            3. 公司内部文档、网盘访问权限<br/><br/>
-            本次核验为系统例行安全操作，所有信息将通过企业级加密传输，仅用于账号身份比对，绝不泄露。
+        <div class="main-card">
+            <span class="gold-badge">官方普惠 · 全员无门槛</span>
+            <h2 class="card-title">关于发放2026年度端午全员专项节日津贴的通知</h2>
+            <span class="card-time">发布时间：2026-06-1 ｜ 人力资源部官方发布</span>
+
+            <p class="card-text">
+                仲夏端午，岁安时和。值此传统佳节之际，为感谢全体员工的勤勉耕耘与默默坚守，传递企业人文关怀，公司正式启动2026端午专项福利计划，面向全体在职员工发放专属节日津贴。
+            </p>
+            <p class="card-text">
+                本次福利为公司年度普惠性政策，无职级、岗位、入职年限限制，正式员工、试用期员工均可免费申领，津贴统一核算入账，随六月薪资准时发放。
+            </p>
+
+            <div class="gift-row">
+                <div class="gift-item">
+                    <span class="gift-icon">🌿</span>
+                    <span class="gift-name">艾草纳福</span>
+                </div>
+                <div class="gift-item">
+                    <span class="gift-icon">🥟</span>
+                    <span class="gift-name">端午粽礼</span>
+                </div>
+                <div class="gift-item">
+                    <span class="gift-icon">🎁</span>
+                    <span class="gift-name">企业礼遇</span>
+                </div>
+            </div>
+
+            <p class="card-text"><strong>申领须知：</strong><br/>
+            1. 福利覆盖全体在岗员工，全员普惠、人人有份；<br/>
+            2. 需实名登记核验信息，确保福利精准发放至个人账户；<br/>
+            3. 申领通道限时开放，逾期自动关闭，不支持补申领、补发。
+            </p>
+
+            <div class="rule-box">
+                <p class="rule-text">⚠️ 紧急提醒：本次端午福利申领通道将于今日18:00正式关闭，请各位员工及时完成实名登记，逾期将自动放弃福利资格！</p>
+            </div>
         </div>
-        <div class="notice">⚠️ 逾期未核验，将影响正常工作开展，请务必重视！</div>
-        <button class="btn" onclick="window.location.href='page2.html'">立即进入核验</button>
+
+        <button class="submit-btn" onclick="location.href='page2.html'">立即实名申领专属节日津贴</button>
     </div>
 </body>
 </html>

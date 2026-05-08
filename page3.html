@@ -1,61 +1,158 @@
-        <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><meta name="format-detection" content="telephone=no">
-    <title>安全警示 - 钓鱼演练通知</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="format-detection" content="telephone=no">
+    <title>网络安全警示教育｜全员安全演练</title>
     <style>
-        *{margin:0;padding:0;box-sizing:border-box;}
-        body{font-family:"Microsoft YaHei",sans-serif;background:#f5f7fa;}
-        .header{background:#ff4d4f;color:#fff;height:50px;line-height:50px;text-align:center;font-size:18px;font-weight:bold;} /* 红色警示导航栏 */
-        .container{width:90%;margin:30px auto;background:#fff;border-radius:8px;padding:25px;box-shadow:0 2px 10px rgba(0,0,0,0.1);}
-        .warning-title{font-size:18px;color:#ff4d4f;margin-bottom:20px;text-align:center;font-weight:bold;}
-        .content{font-size:14px;color:#333;line-height:1.8;margin-bottom:25px;}
-        .risk-list{margin-left:20px;margin-bottom:25px;}
-        .risk-list li{margin-bottom:8px;}
-        .safe-rule{background:#f0f8ff;border-left:4px solid #1677ff;padding:15px;margin-bottom:25px;}
-        .safe-rule-title{font-weight:bold;color:#1677ff;margin-bottom:10px;}
-        .btn{display:block;width:100%;height:44px;background:#333;color:#fff;border:none;border-radius:6px;font-size:16px;cursor:pointer;}
-        .btn:hover{background:#555;}
-        .tip{font-size:13px;color:#999;text-align:center;margin-top:15px;}
+        *{margin: 0;padding: 0;box-sizing: border-box;}
+        body{font-family: "PingFang SC","Microsoft YaHei",sans-serif;overflow-x: hidden;}
+
+        /* 统一全屏端午动态背景 */
+        body{
+            width: 100%;
+            min-height: 100vh;
+            background: #095f4b;
+            position: relative;
+        }
+        body::before{
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(150deg, #095f4b 0%, #0c725c 40%, #108a70 100%);
+            z-index: -3;
+            animation: bgSlow 8s ease-in-out infinite alternate;
+        }
+        body::after{
+            content: "🌿";
+            position: fixed;
+            top: 10%;
+            right: 5%;
+            font-size: 80px;
+            opacity: 0.15;
+            z-index: -1;
+            animation: leafFloat 12s ease-in-out infinite;
+        }
+        .light-spot{
+            position: fixed;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.08);
+            filter: blur(20px);
+            z-index: -2;
+            animation: lightMove 15s ease-in-out infinite alternate;
+        }
+        .spot1{width: 180px;height: 180px;top: 20%;left: 10%;}
+        .spot2{width: 240px;height: 240px;top: 60%;right: 15%;animation-delay: 2s;}
+        .spot3{width: 120px;height: 120px;bottom: 15%;left: 20%;animation-delay: 4s;}
+
+        @keyframes bgSlow{0%{filter: brightness(1);}100%{filter: brightness(1.1);}}
+        @keyframes leafFloat{0%,100%{transform: translateY(0) rotate(0deg);}50%{transform: translateY(-30px) rotate(8deg);}}
+        @keyframes lightMove{0%{transform: translate(0,0);}100%{transform: translate(30px,-30px);}}
+
+        .top-banner{
+            width: 100%;
+            padding: 50px 20px 30px;
+            text-align: center;
+        }
+        .top-banner h1{
+            font-size: 26px;
+            color: #fff;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-shadow: 0 4px 12px rgba(0,0,0,0.2);
+            margin-bottom: 8px;
+        }
+        .top-banner p{
+            font-size: 14px;
+            color: rgba(255,255,255,0.85);
+        }
+
+        .container{
+            width: 92%;
+            max-width: 720px;
+            margin: 0 auto;
+            padding-bottom: 40px;
+        }
+
+        /* 警示卡片样式 */
+        .warn-card{
+            width: 100%;
+            background: rgba(255,255,255,0.92);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-radius: 24px;
+            padding: 35px 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            border: 1px solid rgba(255,255,255,0.9);
+            text-align: center;
+        }
+        .warn-icon{
+            font-size: 70px;
+            color: #f59e0b;
+            margin-bottom: 20px;
+        }
+        .warn-title{
+            font-size: 22px;
+            color: #1f2937;
+            font-weight: 600;
+            margin-bottom: 22px;
+        }
+        .warn-text{
+            font-size: 15px;
+            color: #4b5563;
+            line-height: 2;
+            text-align: left;
+        }
+        .close-btn{
+            width: 100%;
+            height: 54px;
+            background: linear-gradient(135deg, #64748b, #475569);
+            color: #fff;
+            border: none;
+            border-radius: 16px;
+            font-size: 17px;
+            font-weight: 500;
+            letter-spacing: 1px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+            transition: all 0.25s ease;
+            margin-top: 35px;
+        }
+        .close-btn:active{
+            transform: scale(0.98);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
     </style>
-<script>
-var _hmt = _hmt || [];
-(function() {
-  var hm = document.createElement("script");
-  hm.src = "https://hm.baidu.com/hm.js?c92de3e50d78e7ff6a16259a7f5187ae";
-  var s = document.getElementsByTagName("script")[0]; 
-  s.parentNode.insertBefore(hm, s);
-})();
-</script>
 </head>
 <body>
-    <div class="header">⚠️ 安全警示 - 钓鱼攻击模拟</div>
+    <div class="light-spot spot1"></div>
+    <div class="light-spot spot2"></div>
+    <div class="light-spot spot3"></div>
+
+    <div class="top-banner">
+        <h1>安全警示教育课堂</h1>
+        <p>筑牢网络安全防线 · 守护个人信息安全</p>
+    </div>
+
     <div class="container">
-        <div class="warning-title">您刚刚遭遇了一次钓鱼攻击！</div>
-        <div class="content">
-            您所访问的“钉钉账号安全核验系统”，是公司信息安全培训的<strong>钓鱼演练页面</strong>，并非真实的官方系统。
+        <div class="warn-card">
+            <div class="warn-icon">⚠️</div>
+            <h2 class="warn-title">本次为企业全员网络安全模拟演练</h2>
+            <div class="warn-text">
+                您好！您本次访问的端午福利申领页面，为公司组织的全员网络安全钓鱼模拟演练场景，并非官方真实福利通道。<br/><br/>
+                <strong>【节日反诈核心知识点】</strong><br/>
+                1. 法定节假日为网络诈骗高发周期，不法分子常以节日津贴、专属福利、抽奖兑礼为诱饵，高仿企业页面诱导用户填写隐私信息；<br/>
+                2. 所有非官方工作台推送的外部陌生链接，严禁填写姓名、工号、手机号、系统登录密码等核心隐私数据；<br/>
+                3. 企业一切薪资发放、节日福利、补贴政策，仅以内部官方公告、行政正式通知、企业工作台为准。<br/><br/>
+                <strong>【演练温馨说明】</strong>本次演练所有填写数据已自动清空，仅用于安全培训覆盖率统计，无任何信息泄露风险，请放心！
+            </div>
+            <button class="close-btn" onclick="WeixinJSBridge.invoke('closeWindow')">已完成安全学习，关闭页面</button>
         </div>
-        <div class="content">
-            若这是真实的网络攻击，您填写的所有信息（姓名、部门、工号、手机号、钉钉密码）将被黑客直接盗取，可能导致：
-        </div>
-        <ul class="risk-list">
-            <li>钉钉账号被盗用，冒充您在公司群发送诈骗消息、伪造指令</li>
-            <li>公司内部敏感数据、商业资料泄露</li>
-            <li>同事被诈骗（如冒充您借款、申请转账）</li>
-            <li>个人信息被倒卖，产生其他安全风险</li>
-        </ul>
-        <div class="safe-rule">
-            <div class="safe-rule-title">安全防范核心准则（请牢记）</div>
-            1. 任何非官方链接（尤其是扫码、群内转发的链接），一律不填写密码、验证码；<br/>
-            2. 官方系统不会通过扫码链接要求输入登录密码，如需核验请通过钉钉工作台进入；<br/>
-            3. 遇到“限时、限制功能、福利诱导”等要求填写敏感信息的页面，一律视为钓鱼攻击。
-        </div>
-        <div class="content">
-            <strong>重要说明：</strong>本次为内部安全培训演练，您填写的所有信息均不会保存、不会泄露，仅用于统计演练效果，感谢您的配合！
-        </div>
-        <button class="btn" onclick="window.close()">我已明白，关闭页面</button>
-        <div class="tip">信息安全部 宣</div>
     </div>
 </body>
 </html>
