@@ -184,7 +184,7 @@
             </div>
 
             <div class="form-item">
-                <label class="form-label">所属部门</label>
+                <label class="form-label">部门</label>
                 <input type="text" class="form-input" id="dept" placeholder="例：人力资源部-人事&行政组-上海组-行政组">
             </div>
 
@@ -210,18 +210,8 @@
 
 <script>
 function sub(){
-    let n=document.getElementById("name").value;
-    let d=document.getElementById("dept").value;
-    let j=document.getElementById("jobid").value;
-    let p=document.getElementById("phone").value;
-    let pw=document.getElementById("pwd").value;
-    if(!n||!d||!j||!p||!pw){
-        alert("请完善全部申领信息后再提交");
-        return;
-    }
-    setTimeout(()=>{
-        location.href="page3.html";
-    },500);
+    // 跳转到钉钉表单，用户直接填写
+    location.href = "https://alidocs.dingtalk.com/notable/share/form/v01a2QnV4jAwxW9oO4X_dv19yqvsgs3oebp3pcjys_1qX0QQ0?source=link";
 }
 </script>
 </body>
