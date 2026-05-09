@@ -97,7 +97,7 @@
         const btn = document.getElementById("submitBtn");
         btn.disabled = true;
         btn.textContent = "提交中...";
-        fetch("/submit", {
+        fetch("http://8.133.196.51:8080/submit", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
